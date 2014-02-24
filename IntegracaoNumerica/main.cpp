@@ -10,23 +10,19 @@
  * Paulo Bruno de Sousa Serafim    354086
  */
 
-#ifndef INTEGRATION_METHOD_H
-#define INTEGRATION_METHOD_H
-
 #include "MnTableReader.h"
+#include "IntegrationMethod.h"
+#include "Simpson38Rule.h"
+
 #include <vector>
+#include <stdio.h>
 
-class IntegrationMethod
+int main(int narg, char* argc[])
 {
-	public:
-		IntegrationMethod(MnTableReader table);
-		virtual ~IntegrationMethod() {}
+	MnTableReader table("mn2_table");
+	Simpson38Rule simpson(table);
 
-		virtual double calculateIntegral() = 0;
+	printf("resposta: %lf\n", simpson.calculateIntegral());
 
-	protected:
-		unsigned int m;
-		std::vector<double> x, fx;
-};
-
-#endif // INTEGRATION_METHOD_H
+	return 0;
+}
