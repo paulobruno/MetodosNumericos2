@@ -12,19 +12,29 @@
 /*                                           */
 /*********************************************/
 
-#ifndef SIMPSON_38_RULE_H
-#define SIMPSON_38_RULE_H
+#include "Simpson13Rule.h"
+#include <iostream>
+#include <cstdlib>
 
-#include "IntegrationMethod.h"
-#include <string>
-
-class Simpson38Rule : public IntegrationMethod
+double Simpson13Rule::calculateIntegral()
 {
-	public:
-		Simpson38Rule(MnTableReader table) : 
-			IntegrationMethod(table) {}
+	if (m % 2) // m is odd
+	{
+		std::cout << "O numero de intervalos para o metodo 1/3 de Simpson deve ser par.\nPrograma abortado.\n";
+		exit(EXIT_FAILURE);
+	}
 
-		double calculateIntegral();
-};
+	double sum = fx[0];
 
-#endif // SIMPSON_38_RULE_H
+	for (int i = 1; i < m; ++i)
+	{
+		if (i % 2) // i is odd
+			sum += 4*fx[i];
+		else // i is even
+			sum += 2*fx[i];
+	}
+
+	sum += fx[m];
+	
+	return ( ((x[m] - x[0]) * sum) / (3*m) );
+}

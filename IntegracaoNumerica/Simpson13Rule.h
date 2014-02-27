@@ -12,19 +12,19 @@
 /*                                           */
 /*********************************************/
 
-#ifndef SIMPSON_38_RULE_H
-#define SIMPSON_38_RULE_H
+#ifndef SIMPSON_13_RULE_H
+#define SIMPSON_13_RULE_H
 
 #include "IntegrationMethod.h"
 #include <string>
 
-class Simpson38Rule : public IntegrationMethod
+class Simpson13Rule : public IntegrationMethod
 {
 	public:
-		Simpson38Rule(MnTableReader table) : 
+		Simpson13Rule(MnTableReader table) : 
 			IntegrationMethod(table) {}
 
 		double calculateIntegral();
 };
 
-#endif // SIMPSON_38_RULE_H
+#endif // SIMPSON_13_RULE_H

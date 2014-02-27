@@ -1,14 +1,16 @@
-/* 2014, Fortaleza, Ceara
- *
- * UNIVERSIDADE FEDERAL DO CEARA
- * CURSO DE COMPUTACAO
- * METODOS NUMERICOS II
- * PROFESSORA: Emanuele Marques dos Santos
- *
- * Jonas Lima da Silva             344090
- * Livio de Lima Sales             343158
- * Paulo Bruno de Sousa Serafim    354086
- */
+/*********************************************/
+/*                                           */
+/*  2014, Fortaleza, Ceara                   */
+/*                                           */
+/*  UNIVERSIDADE FEDERAL DO CEARA            */
+/*  CURSO DE COMPUTACAO                      */
+/*  METODOS NUMERICOS II                     */
+/*  PROFESSORA: Emanuele Marques dos Santos  */
+/*                                           */
+/*  Jose Orlando Barbosa Filho      336224   */
+/*  Paulo Bruno de Sousa Serafim    354086   */
+/*                                           */
+/*********************************************/
 
 #ifndef MN_TABLE_READER_H
 #define MN_TABLE_READER_H
