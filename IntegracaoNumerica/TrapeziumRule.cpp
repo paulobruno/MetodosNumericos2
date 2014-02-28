@@ -12,21 +12,20 @@
 /*                                           */
 /*********************************************/
 
-#include "MnTableReader.h"
-#include "IntegrationMethod.h"
 #include "TrapeziumRule.h"
-#include "Simpson13Rule.h"
-#include "Simpson38Rule.h"
-
-#include <vector>
 #include <iostream>
+#include <cstdlib>
 
-int main(int narg, char* argc[])
+double TrapeziumRule::calculateIntegral()
 {
-	MnTableReader table("mn2_table.txt");
-	Simpson13Rule simpson(table);
+	double sum = fx[0];
 
-	std::cout << "Resposta: " << simpson.calculateIntegral() << "\n";
+	for (int i = 1; i < m; ++i)
+	{
+		sum += 2*fx[i];
+	}
 
-	return 0;
+	sum += fx[m];
+	
+	return ( ((x[m] - x[0]) * sum) / (2*m) );
 }

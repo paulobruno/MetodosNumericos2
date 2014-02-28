@@ -12,21 +12,19 @@
 /*                                           */
 /*********************************************/
 
-#include "MnTableReader.h"
+#ifndef TRAPEZIUM_RULE_H
+#define TRAPEZIUM_RULE_H
+
 #include "IntegrationMethod.h"
-#include "TrapeziumRule.h"
-#include "Simpson13Rule.h"
-#include "Simpson38Rule.h"
+#include <string>
 
-#include <vector>
-#include <iostream>
-
-int main(int narg, char* argc[])
+class TrapeziumRule : public IntegrationMethod
 {
-	MnTableReader table("mn2_table.txt");
-	Simpson13Rule simpson(table);
+	public:
+		TrapeziumRule(MnTableReader table) : 
+			IntegrationMethod(table) {}
 
-	std::cout << "Resposta: " << simpson.calculateIntegral() << "\n";
+		double calculateIntegral();
+};
 
-	return 0;
-}
+#endif // TRAPEZIUM_RULE_H
