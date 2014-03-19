@@ -15,10 +15,9 @@ EXEC	= MnIntegration
 SHOW	= ./
 
 METHODS	= \
-	IntegrationMethod.cpp \
-	TrapeziumRule.cpp \
-	Simpson13Rule.cpp \
-	Simpson38Rule.cpp
+	ClosedNewtonCotes.cpp \
+	OpenNewtonCotes.cpp \
+	RombergIntegration.cpp
 	
 UTILITY	= \
 	MnTableReader.cpp 
