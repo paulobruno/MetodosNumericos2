@@ -12,31 +12,30 @@
 /*                                           */
 /*********************************************/
 
-#ifndef OPEN_NEWTON_COTES_H
-#define OPEN_NEWTON_COTES_H
-
-#include "Integration.h"
-#include "Function.h"
+#include "OpenNewtonCotes.h"
+#include <iostream>
 #include <vector>
-#include <string>
 
-class OpenNewtonCotes : public Integration
+#include "Function.h"
+#include "Function1.h"
+#include "Function2.h"
+#include "Function3.h"
+#include "Function4.h"
+#include "Function5.h"
+
+int main(int narg, char* argc[])
 {
-public:
+	std::vector<Function*> functions;
+	
+	functions.push_back( new Function1() );
+	functions.push_back( new Function2() );
+	functions.push_back( new Function3() );
+	functions.push_back( new Function4() );
+	functions.push_back( new Function5() );
 
-	OpenNewtonCotes(std::string filename, const std::vector<Function*>& functions);
+	OpenNewtonCotes openNC(argc[1], functions);
 
-	double calculateIntegral();
+	std::cout << "Integral: " << openNC.calculateIntegral() << "\n";
 
-private:
-
-	int m, n;
-	double xMin, xMax;
-	Function *func;
-
-	// fixed values
-	double alpha[4];
-	int weight[4][5];
-};
-
-#endif // OPEN_NEWTON_COTES_H
+	return 0;
+}

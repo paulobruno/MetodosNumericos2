@@ -16,16 +16,25 @@
 #define CLOSED_NEWTON_COTES_H
 
 #include "Integration.h"
+#include <vector>
+#include <string>
 
 class ClosedNewtonCotes : public Integration
 {
 public:
 
+	ClosedNewtonCotes(std::string filename, int integrationMethod);
+
 	double calculateIntegral();
 
 private:
 
-};
+	int m, n;
+	std::vector<double> x, fx;
 
+	// fixed values
+	int d[6];
+	int weight[6][7];
+};
 
 #endif // CLOSED_NEWTON_COTES_H

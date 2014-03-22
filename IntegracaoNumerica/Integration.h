@@ -19,9 +19,9 @@ class Integration
 {
 public:
 
-	virtual ~Integral() {}
+	virtual ~Integration() {}
 
-	virtual void calculateIntegral() = 0;
+	virtual double calculateIntegral() = 0;
 
 };
 
