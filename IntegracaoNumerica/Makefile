@@ -59,7 +59,7 @@ $(EXECCLOSEDNC): $(CLOSED:.cpp = .o) main_closedNewtonCotes.o
 $(EXECOPENNC): $(OPEN:.cpp = .o) main_openNewtonCotes.o
 	$(CC) $^ -o $@
 
-$(EXECROMBERG): $(ROMBERG:.cpp = .o) main_romberg.o
+$(EXECROMBERG): $(ROMBERG:.cpp = .o) $(CLOSED:.cpp = .o) main_romberg.o
 	$(CC) $^ -o $@
 
 
@@ -88,7 +88,7 @@ clean:
 	$(RM) *.o *~
 
 cleanall:
-	$(RM) $(EXEC) *.o *~
+	$(RM) $(EXECTRAPEZIUM) $(EXECSIMPSON13) $(EXECSIMPSON38) $(EXECCLOSEDNC) $(EXECOPENNC) $(EXECROMBERG) *.o *~
 
 help:
 	@echo "# "
@@ -109,6 +109,8 @@ help:
 	@echo "#     make romberg   : Compila somente os arquivos do metodo de Romberg."
 	@echo "#                        Gera executavel execRomberg."
 	@echo "#     make clean     : Elimina os arquivos criados no processo de compilacao."
-	@echo "#     make cleanall  : O mesmo que make clean e elimina tambem o executavel."
+	@echo "#     make cleanall  : O mesmo que make clean e elimina tambem os executaveis."
 	@echo "#     make help      : Mostra esta ajuda."
+	@echo "# "
+	@echo "#     Para mais informacoes consulte o arquivo README."
 	@echo "# "
