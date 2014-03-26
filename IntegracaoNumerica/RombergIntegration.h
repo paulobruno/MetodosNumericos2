@@ -32,14 +32,12 @@ public:
 
 private:
 
-	int h1, h2;
-	double xMin, xMax, integral1, integral2;
+	double h1, h2, xMin, xMax, integral1, integral2;
 
 	Function* func;
 	ClosedNewtonCotes* closedNC;
 
 	void writeClosedNCfiles();
-
 };
 
 #endif // ROMBERG_INTEGRATION_H

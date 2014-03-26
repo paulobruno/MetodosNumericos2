@@ -27,9 +27,11 @@ public:
 
 	double calculateIntegral();
 
-private:
+protected:
 
-	int m, n;
+	ClosedNewtonCotes() {}
+
+	int m, typeMethod;
 	std::vector<double> x, fx;
 
 	// fixed values

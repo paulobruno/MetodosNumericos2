@@ -12,12 +12,12 @@
 /*                                           */
 /*********************************************/
 
-#include "ClosedNewtonCotes.h"
+#include "DoubleIntegration.h"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
 
-ClosedNewtonCotes::ClosedNewtonCotes(std::string filename, int integrationMethod)
+DoubleIntegration::DoubleIntegration(std::string filename, int integrationMethod)
 {
 	typeMethod = integrationMethod;
 
@@ -27,50 +27,52 @@ ClosedNewtonCotes::ClosedNewtonCotes(std::string filename, int integrationMethod
 		exit(EXIT_FAILURE);
 	}
 
-	double tempX, tempFx;
+	int iAux, jAux;
+	double tempX, tempY, tempFx;
 
 	std::ifstream fileTable;
     fileTable.open(filename.c_str(), std::ifstream::in);
 
-	fileTable >> m;
+	fileTable >> mx >> my;
 
-	for (int i = 0; i <= m; ++i)
+	for (int i = 0; i < (mx+1)*(my+1); ++i)
 	{
-		fileTable >> tempX >> tempFx;
+		fileTable >> iAux >> jAux >> tempX >> tempY >> tempFx;
 
 		x.push_back(tempX);
+		y.push_back(tempY);
 		fx.push_back(tempFx);
 	}
-
-	// loads the values of the general ns
-	const int d[6] = { 2, 6, 8, 90, 288, 840 };
-	const int weight[6][7] = { 1,   1,   0,   0,   0,   0,   0,
-							   1,   4,   1,   0,   0,   0,   0,
-							   1,   3,   3,   1,   0,   0,   0,
-							   7,  32,  12,  32,   7,   0,   0,
-							  19,  75,  50,  50,  75,  19,   0,
-							  41, 216,  27, 272,  27, 216,  41 };
 }
 
-double ClosedNewtonCotes::calculateIntegral()
+double DoubleIntegration::calculateIntegral()
 {
-	if (m % (typeMethod))
+	std::vector<double>:: iterator it;
+	std::vector<double> integration;
+	std::vector<double> tempFx(my + 1);
+
+	ClosedNewtonCotes::m = my;
+
+	for (int i = 0; i <= mx; ++i)
 	{
-		std::cout << "O numero de intervalos para este metodo deve ser multiplo de " << typeMethod << ". Digite 'make help' para ajuda.\nPrograma abortado.\n";
-		exit(EXIT_FAILURE);
+		ClosedNewtonCotes::x.push_back(this->x[i]);
 	}
 
-	double sum = 0;
-
-	for (int i = 0; i < m; i += typeMethod)
+	for (it = this->fx.begin(); it < this->fx.end(); ++it)
 	{
-		for (int j = 0; j <= typeMethod; ++j)
+		for (int i = 0; i <= my; ++i)
 		{
-			sum += fx[i+j]*weight[typeMethod-1][j]; 
+			tempFx[i] = (*it);
+			++it;
 		}
+
+		ClosedNewtonCotes::fx = tempFx;
+
+		integration.push_back(ClosedNewtonCotes::calculateIntegral());
 	}
 
-	double step = (x[m] - x[0]) / (double)m;
+	ClosedNewtonCotes::m = integration.size() - 1;
+	ClosedNewtonCotes::fx = integration;
 
-	return ( ( (double)(typeMethod*step) / (double)d[typeMethod-1] ) * sum );
+	return ClosedNewtonCotes::calculateIntegral();
 }

@@ -12,31 +12,26 @@
 /*                                           */
 /*********************************************/
 
-#ifndef OPEN_NEWTON_COTES_H
-#define OPEN_NEWTON_COTES_H
+#ifndef MULTIPLE_INTEGRATION_H
+#define MULTIPLE_INTEGRATION_H
 
-#include "Integration.h"
-#include "Function.h"
+#include "ClosedNewtonCotes.h"
 #include <vector>
 #include <string>
 
-class OpenNewtonCotes : public Integration
+class DoubleIntegration : public ClosedNewtonCotes
 {
 public:
-
-	OpenNewtonCotes(std::string filename, const std::vector<Function*>& functions);
+	
+	DoubleIntegration(std::string filename, int integrationMethod);
 
 	double calculateIntegral();
 
-protected:
+private:
 
-	int m, n;
-	double xMin, xMax;
-	Function *func;
+	int mx, my;
 
-	// fixed values
-	double alpha[4];
-	int weight[4][5];
+	std::vector<double> x, y, fx;
 };
 
-#endif // OPEN_NEWTON_COTES_H
+#endif // MULTIPLE_INTEGRATION_H
