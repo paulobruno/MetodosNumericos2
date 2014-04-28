@@ -28,7 +28,7 @@ void PowerIteration::calculateEigenvalue()
     }
     
     
-    // prints matrix
+    // print matrix
     std::cout << "\033[0;32mMatriz A:\033[0m\n";
     
     for (unsigned int i = 0; i < order; ++i)
@@ -43,7 +43,7 @@ void PowerIteration::calculateEigenvalue()
     std::cout << '\n';
     
     
-    // calculates first vector Z
+    // calculate first vector Z
     for (unsigned int i = 0; i < order; ++i)
     {
         zVector[i] = 0;
@@ -51,7 +51,6 @@ void PowerIteration::calculateEigenvalue()
         for (unsigned int j = 0; j < order; ++j)
         {
             zVector[i] += matrix[i*order + j] * evector[j];
-            
         }
     }
     
@@ -63,7 +62,7 @@ void PowerIteration::calculateEigenvalue()
     {
         oldEvalue = evalue;
         
-        //calculate next vector Q
+        // calculate next vector Q
         double norm = 0;
         
         for (unsigned int i = 0; i < order; ++i)
@@ -79,7 +78,7 @@ void PowerIteration::calculateEigenvalue()
         }
         
         
-        // calculates next vector Z
+        // calculate next vector Z
         for (unsigned int i = 0; i < order; ++i)
         {
             zVector[i] = 0;
@@ -92,7 +91,7 @@ void PowerIteration::calculateEigenvalue()
         }
         
         
-        // calculates greatest absolute eigenvalue
+        // calculate greatest absolute eigenvalue
         evalue = 0;
         
         for (unsigned int i = 0; i < order; ++i)
@@ -113,10 +112,10 @@ void PowerIteration::calculateEigenvalue()
         
         ++k;
     }
-    while (evalue - oldEvalue > error);
+    while ( std::abs(evalue - oldEvalue) > error );
     
     
-    // reprints matrix for convenience
+    // reprint matrix for convenience
     std::cout << "\033[0;32mMatriz A:\033[0m\n";   
     
     for (unsigned int i = 0; i < order; ++i)

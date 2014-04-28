@@ -18,16 +18,14 @@
 #include <math.h>
 #include <cstdlib>
 
-GaussianQuadrature::GaussianQuadrature(std::string filename, std::vector<Function*>& functions);
+GaussianQuadrature::GaussianQuadrature(std::string filename, std::vector<Function*>& functions)
 {
-	Integral = 0;
-
 	std::ifstream fileTable;
     fileTable.open(filename.c_str(), std::ifstream::in);
 
 	fileTable >> n;
 
-	if (n < 0 || n > 4)
+	if (n < 1 || n > 5)
 	{
 		std::cout << "Metodo inexistente. Escolha um valor no intervalo [0,4]. Digite 'make help' para ajuda.\nPrograma abortado.\n";
 		exit(EXIT_FAILURE);
@@ -49,48 +47,28 @@ GaussianQuadrature::GaussianQuadrature(std::string filename, std::vector<Functio
 
 double GaussianQuadrature::calculateIntegral()
 {
-    switch(n)
+	// loads the values of the general methods
+	const double A[5][5] = {        2.0,        0.0,        0.0,        0.0,        0.0,
+							        1.0,        1.0,        0.0,        0.0,        0.0,
+							 0.55555556, 0.88888889, 0.55555556,        0.0,        0.0,
+							 0.34785485, 0.65214515, 0.65214515, 0.34785485,        0.0,
+							 0.23692689, 0.47862867, 0.56888889, 0.47862867, 0.23692689 };
+							
+	const double t[5][5] = {        0.0,         0.0,        0.0,        0.0,        0.0,
+							-0.57735027,  0.57735027,        0.0,        0.0,        0.0,
+							-0.77459667,         0.0, 0.77459667,        0.0,        0.0,
+							-0.86113631, -0.33998104, 0.33998104, 0.86113631,        0.0,
+							-0.90617985, -0.53846931,        0.0, 0.53846931, 0.90617985 };
+							
+	double x_t, integral = 0;
 
+    for (int i = 0 ; i < n ; ++i)
     {
-        case 2:
-        {
-            Vetor_X[0] = -0.70710678;
-            Vetor_X[1] =  0.70710678;
-            Peso[0] = 0.88622692;
-            Peso[1] = 0.88622692;
-            break;
-        }
-        case 3:
-        {
-            Vetor_X[0] = -1.22474487;
-            Vetor_X[1] =  0;
-            Vetor_X[2] =  1.22474487;
-            Peso[0] = 0.29540897;
-            Peso[1] = 1.18163590;
-            Peso[2] = 0.29540897;
-            break;
-        }
-        case 4:
-        {
-            Vetor_X[0] = -1.65068012;
-            Vetor_X[1] = -0.52464762;
-            Vetor_X[2] =  0.52464762;
-            Vetor_X[3] =  1.65068012;
-            Peso[0] = 0.08131283;
-            Peso[1] = 0.80491409;
-            Peso[2] = 0.80491409;
-            Peso[3] = 0.08131283;
-            break;
-        }
-        default:
-        {
-            return(-1);
-        }
+    	x_t = ( (xMax - xMin) * t[n-1][i] + xMin + xMax ) / 2.0;
+    	std::cout << "xt = " << x_t << '\n';
+        integral += A[n-1][i] * func->f(x_t);       
+    	std::cout << "f(xt) = " << func->f(x_t) << "\n\n";
     }
-    for (int i=0 ; i<n ; i++)
-    {
-        Integral += Peso[i]*(funcao_fx(Vetor_X[i]));
-    }
-    return(Integral);
+    return ((xMax - xMin)*integral / 2.0);
 }
 

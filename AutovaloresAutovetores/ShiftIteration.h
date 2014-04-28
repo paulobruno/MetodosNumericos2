@@ -11,28 +11,20 @@
 /*                                           */
 /*********************************************/
 
-#ifndef __HOUSEHOLDER_TRANSFORMATION_H__
-#define __HOUSEHOLDER_TRANSFORMATION_H__
+#ifndef __SHIFT_ITERATION_H__
+#define __SHIFT_ITERATION_H__
 
-#include "Eigenvalue.h"
+#include "PowerMethod.h"
 #include <string>
-#include <vector>
 
-class HouseholderTransformation : Eigenvalue
+class ShiftIteration : public  PowerMethod
 {
     public:
     
-        HouseholderTransformation(std::string filename) : Eigenvalue(filename) {}
-        virtual ~HouseholderTransformation() {}
+        ShiftIteration(std::string filename) : PowerMethod(filename) {}
+        virtual ~ShiftIteration() {}
 
         void calculateEigenvalue();
-        
-        std::vector<double>& getEigenvaluesMatrix() {return evaluesMatrix;}
-        std::vector<double>& getEigenvectorsMatrix() {return evectorsMatrix;}
-
-    private:
-
-        std::vector<double> evaluesMatrix, evectorsMatrix;        
 };
 
-#endif // __HOUSEHOLDER_TRANSFORMATION_H__
+#endif // __SHIFT_ITERATION_H__

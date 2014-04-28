@@ -42,17 +42,17 @@ OpenNewtonCotes::OpenNewtonCotes(std::string filename, const std::vector<Functio
 	func = functions[funcIndex-1];
 	
 	fileTable >> xMin >> xMax;
-
-	// loads the values of the general methods
-	const double alpha[4] = { 1.5, 1.333333, 0.208333, 0.3 };
-	const int weight[4][5] = { 1,   1,   0,   0,   0,
-							   2,  -1,   2,   0,   0,
-							  11,   1,   1,   11,  0,
-							  11, -14,  26,  -14,  11 };
 }
 
 double OpenNewtonCotes::calculateIntegral()
 {
+	// loads the values of the general methods
+	const double alpha[4] = { 1.5, 1.333333, 0.208333, 0.3 };
+	const int weight[4][5] = { 1,   1,   0,    0,   0,
+							   2,  -1,   2,    0,   0,
+							  11,   1,   1,   11,   0,
+							  11, -14,  26,  -14,  11 };
+							  
 	double step = ( (xMax - xMin) / (double)(n+2) );
 
 	if (n > 0)	

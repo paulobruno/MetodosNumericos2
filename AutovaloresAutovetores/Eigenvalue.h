@@ -26,10 +26,12 @@ class Eigenvalue
         
         virtual void calculateEigenvalue() = 0;
         
+        int getOrder() {return order;}
+        
     protected:
     
         int order;
-        double error;
+        double error, mi; // mi used only in shift iteration
         std::vector<double> matrix;
 };
 

@@ -11,11 +11,11 @@
 /*                                           */
 /*********************************************/
 
-#include "InverseIteration.h"
+#include "ShiftIteration.h"
 #include <iostream>
 #include <cmath>
 
-void InverseIteration::calculateEigenvalue()
+void ShiftIteration::calculateEigenvalue()
 {
     unsigned int k = 1;
     double oldEvalue, pivot, zVector[order], A[order][order];

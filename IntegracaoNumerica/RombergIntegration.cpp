@@ -8,9 +8,9 @@ RombergIntegration::RombergIntegration(std::string filename, std::vector<Functio
 	std::ifstream fileTable;
     fileTable.open(filename.c_str(), std::ifstream::in);
 
-	fileTable >> h1;
+	fileTable >> m1;
 
-	h2 = h1 / 2;
+	m2 = m1 / 2;
 
 	int funcIndex;
 	fileTable >> funcIndex;
@@ -53,13 +53,13 @@ void RombergIntegration::writeClosedNCfiles()
     fileTable1.open("closedNCforRomberg1.txt", std::ofstream::out);
     fileTable2.open("closedNCforRomberg2.txt", std::ofstream::out);
 
-	int m1 = (xMax - xMin) / h1;
-	int m2 = (xMax - xMin) / h2;
+	double h1 = (xMax - xMin) / (double)m1;
+	double h2 = (xMax - xMin) / (double)m2;
 
 	fileTable1 << m1;
 	fileTable2 << m2;
 
-	for (int i = 0; i < h1; ++i)
+	for (int i = 0; i < m1; ++i)
 	{
 		double x1 = xMin + i*h1;
 		fileTable1 << "\n" << x1 << "\t" << func->f(x1);

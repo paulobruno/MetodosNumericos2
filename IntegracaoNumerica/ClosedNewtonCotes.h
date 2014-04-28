@@ -33,10 +33,6 @@ protected:
 
 	int m, typeMethod;
 	std::vector<double> x, fx;
-
-	// fixed values
-	int d[6];
-	int weight[6][7];
 };
 
 #endif // CLOSED_NEWTON_COTES_H

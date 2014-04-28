@@ -16,22 +16,23 @@
 
 #include "Eigenvalue.h"
 #include <string>
+#include <vector>
 
 class QrAlgorithm : public Eigenvalue
 {
     public:
     
-        QrAlgorithm(std::string filename) : Eigenvalue(filename) {evaluesMatrix = NULL; evectorsMatrix = NULL;}
-        virtual ~QrAlgorithm() {delete evaluesMatrix; delete evectorsMatrix;}
+        QrAlgorithm(std::string filename) : Eigenvalue(filename) {}
+        virtual ~QrAlgorithm() {}
 
         void calculateEigenvalue();
         
-        double* getEigenvaluesMatrix() {return evaluesMatrix;}
-        double* getEigenvectorsMatrix() {return evectorsMatrix;}
+        std::vector<double>& getEigenvaluesMatrix() {return evaluesMatrix;}
+        std::vector<double>& getEigenvectorsMatrix() {return evectorsMatrix;}
 
     private:
 
-        double *evaluesMatrix, *evectorsMatrix;
+        std::vector<double> evaluesMatrix, evectorsMatrix;
 };
 
 #endif // __QR_ALGORITHM_H__

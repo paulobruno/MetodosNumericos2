@@ -11,29 +11,13 @@
 /*                                           */
 /*********************************************/
 
-#include "FirstDerivative.h"
+#include "HouseholderTransformation.h"
 #include <iostream>
-#include <vector>
+#include <fstream>
 #include <cstdlib>
+#include <cmath>
 
-#include "Function.h"
-#include "Function1.h"
-#include "Function2.h"
-#include "Function3.h"
-#include "Function4.h"
-
-int main(int narg, char* argc[])
+void HouseholderTransformation::calculateEigenvalue()
 {
-	std::vector<Function*> functions;
 	
-	functions.push_back( new Function1() );
-	functions.push_back( new Function2() );
-	functions.push_back( new Function3() );
-	functions.push_back( new Function4() );
-
-	FirstDerivative firstDiff(argc[1], functions, atoi(argc[2]));
-
-	std::cout << "Derivative: " << firstDiff.calculateDerivative() << "\n";
-
-	return 0;
 }

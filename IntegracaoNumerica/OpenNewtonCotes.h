@@ -33,10 +33,6 @@ protected:
 	int m, n;
 	double xMin, xMax;
 	Function *func;
-
-	// fixed values
-	double alpha[4];
-	int weight[4][5];
 };
 
 #endif // OPEN_NEWTON_COTES_H

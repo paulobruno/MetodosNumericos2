@@ -50,4 +50,17 @@ Eigenvalue::Eigenvalue(std::string filename)
         std::cout << "Erro invalido, escolha valor maior que 0. Digite 'make help' para ajuda.\nPrograma abortado.\n";
 	    exit(EXIT_FAILURE);
     }
+    
+    // change matrix
+    file >> mi;
+    
+    for (unsigned int i = 0; i < order; ++i)
+    {
+        for (unsigned int j = 0; j < order; ++j)
+        {
+            if (i == j)
+            
+            matrix[i*order + j] -= mi;
+        }
+    }
 }

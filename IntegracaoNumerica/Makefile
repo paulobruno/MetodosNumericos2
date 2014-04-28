@@ -9,7 +9,7 @@
 # Paulo Bruno de Sousa Serafim    354086
 
 CC		= g++
-CFLAGS	= -c
+CFLAGS	= -c -g
 
 EXECALL	       = execAll
 EXECTRAPEZIUM  = execTrapezium
@@ -26,7 +26,7 @@ EXECDOUBLECLOSEDNC  = execDoubleClosedNC
 CLOSED     = ClosedNewtonCotes.cpp
 OPEN       = OpenNewtonCotes.cpp
 ROMBERG    = RombergIntegration.cpp
-QUADRATURE = 
+QUADRATURE = GaussianQuadrature.cpp
 DOUBLE     = DoubleIntegration.cpp
 
 METHODS	= \
@@ -74,7 +74,8 @@ $(EXECOPENNC): $(OPEN:.cpp = .o) main_openNewtonCotes.o
 $(EXECROMBERG): $(ROMBERG:.cpp = .o) $(CLOSED:.cpp = .o) main_romberg.o
 	$(CC) $^ -o $@
 
-$(EXECQUADRATURE): 
+$(EXECQUADRATURE): $(QUADRATURE:.cpp = o) main_quadrature.o
+	$(CC) $^ -o $@
 
 $(EXECDOUBLETRAPEZIUM): $(DOUBLE:.cpp = .o) $(CLOSED:.cpp = .o) main_doubleTrapezium.o
 	$(CC) $^ -o $@
@@ -127,6 +128,7 @@ help:
 	@echo "# "
 	@echo "#     make           : Compila todos os arquivos e gera varios executaveis."
 	@echo "#     make all       : O mesmo que make."
+	@echo "# "
 	@echo "#     make trapezium : Compila somente os arquivos do metodo do trapezio."
 	@echo "#                        Gera executavel execTrapezium."
 	@echo "#     make simpson13 : Compila somente os arquivos do metodo 1/3 de Simpson."

@@ -16,22 +16,23 @@
 
 #include "Eigenvalue.h"
 #include <string>
+#include <vector>
 
 class Jacobi : public Eigenvalue
 {
     public:
     
-        Jacobi(std::string filename) : Eigenvalue(filename) {evectorsMatrix = NULL; evaluesMatrix  = NULL;}
-        virtual ~Jacobi() {delete evaluesMatrix; delete evectorsMatrix;}
+        Jacobi(std::string filename) : Eigenvalue(filename) {}
+        virtual ~Jacobi() {}
         
         void calculateEigenvalue();
         
-        double* getEigenvaluesMatrix() {return evaluesMatrix;}
-        double* getEigenvectorsMatrix() {return evectorsMatrix;}
+        std::vector<double>& getEigenvaluesMatrix() {return evaluesMatrix;}
+        std::vector<double>& getEigenvectorsMatrix() {return evectorsMatrix;}
 
     private:
 
-        double *evaluesMatrix, *evectorsMatrix;
+        std::vector<double> evaluesMatrix, evectorsMatrix;
         
 };
 

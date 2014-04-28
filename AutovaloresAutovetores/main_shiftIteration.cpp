@@ -11,29 +11,31 @@
 /*                                           */
 /*********************************************/
 
-#include "FirstDerivative.h"
+#include "ShiftIteration.h"
 #include <iostream>
-#include <vector>
-#include <cstdlib>
-
-#include "Function.h"
-#include "Function1.h"
-#include "Function2.h"
-#include "Function3.h"
-#include "Function4.h"
 
 int main(int narg, char* argc[])
 {
-	std::vector<Function*> functions;
+	ShiftIteration shiftItEvalue(argc[1]);
+    shiftItEvalue.calculateEigenvalue();
+    
+	std::vector<double> evector;
+	int order;
+	double evalue;
 	
-	functions.push_back( new Function1() );
-	functions.push_back( new Function2() );
-	functions.push_back( new Function3() );
-	functions.push_back( new Function4() );
+	order = shiftItEvalue.getOrder();
+	evalue = shiftItEvalue.getEigenvalue();
+	evector = shiftItEvalue.getEigenvector();
 
-	FirstDerivative firstDiff(argc[1], functions, atoi(argc[2]));
+    // print results
+    std::cout << "\nResults: \n" << "\033[0;31mUnit Eigenvector:\033[0m\n";
 
-	std::cout << "Derivative: " << firstDiff.calculateDerivative() << "\n";
+    for (unsigned int i = 0; i < order; ++i)
+    {            
+        std::cout << evector[i] << '\n';
+    }
+    
+    std::cout << "\033[0;33mEigenvalue: \033[0m" << evalue << "\n\n";
 
 	return 0;
 }

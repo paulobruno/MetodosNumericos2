@@ -41,7 +41,10 @@ ClosedNewtonCotes::ClosedNewtonCotes(std::string filename, int integrationMethod
 		x.push_back(tempX);
 		fx.push_back(tempFx);
 	}
+}
 
+double ClosedNewtonCotes::calculateIntegral()
+{
 	// loads the values of the general ns
 	const int d[6] = { 2, 6, 8, 90, 288, 840 };
 	const int weight[6][7] = { 1,   1,   0,   0,   0,   0,   0,
@@ -50,10 +53,7 @@ ClosedNewtonCotes::ClosedNewtonCotes(std::string filename, int integrationMethod
 							   7,  32,  12,  32,   7,   0,   0,
 							  19,  75,  50,  50,  75,  19,   0,
 							  41, 216,  27, 272,  27, 216,  41 };
-}
-
-double ClosedNewtonCotes::calculateIntegral()
-{
+							  
 	if (m % (typeMethod))
 	{
 		std::cout << "O numero de intervalos para este metodo deve ser multiplo de " << typeMethod << ". Digite 'make help' para ajuda.\nPrograma abortado.\n";

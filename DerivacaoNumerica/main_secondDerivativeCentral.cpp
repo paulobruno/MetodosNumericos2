@@ -11,10 +11,9 @@
 /*                                           */
 /*********************************************/
 
-#include "FirstDerivative.h"
+#include "SecondDerivative.h"
 #include <iostream>
 #include <vector>
-#include <cstdlib>
 
 #include "Function.h"
 #include "Function1.h"
@@ -31,9 +30,9 @@ int main(int narg, char* argc[])
 	functions.push_back( new Function3() );
 	functions.push_back( new Function4() );
 
-	FirstDerivative firstDiff(argc[1], functions, atoi(argc[2]));
+	SecondDerivative secondDiff(argc[1], functions, 2);
 
-	std::cout << "Derivative: " << firstDiff.calculateDerivative() << "\n";
+	std::cout << "Central Second Derivative: " << secondDiff.calculateDerivative() << "\n";
 
 	return 0;
 }

@@ -26,13 +26,13 @@ class RombergIntegration : public Integration
 public:
 
 	RombergIntegration(std::string filename, std::vector<Function*>& functions);
-	virtual ~RombergIntegration() {delete func; delete closedNC;}
+	virtual ~RombergIntegration() {}
 
 	double calculateIntegral();
 
 private:
 
-	double h1, h2, xMin, xMax, integral1, integral2;
+	double m1, m2, xMin, xMax, integral1, integral2;
 
 	Function* func;
 	ClosedNewtonCotes* closedNC;

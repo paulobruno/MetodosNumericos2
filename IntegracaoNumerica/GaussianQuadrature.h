@@ -30,11 +30,9 @@ class GaussianQuadrature : public Integration
 		double calculateIntegral();
 	
 	private:
+	
 		int m, n;
 		double xMin, xMax;
 		Function *func;
-		
-    	double VetorX[4]; 
-    	double Peso[4]; 
 };
 #endif // GAUSSIAN_QUADRATURE_H
