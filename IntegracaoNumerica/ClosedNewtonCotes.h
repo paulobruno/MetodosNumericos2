@@ -26,6 +26,8 @@ public:
 	ClosedNewtonCotes(std::string filename, int integrationMethod);
 
 	double calculateIntegral();
+	
+	friend class RombergIntegration;
 
 protected:
 

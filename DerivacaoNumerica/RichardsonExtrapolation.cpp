@@ -16,6 +16,11 @@
 #include <fstream>
 #include <cstdlib>
 
+RichardsonExtrapolation::RichardsonExtrapolation(std::string filename, int diffMethod)
+{
+
+}
+
 RichardsonExtrapolation::RichardsonExtrapolation(std::string filename, const std::vector<Function*>& functions, int diffMethod)
 {
 	diffType = (derivativeType)diffMethod;

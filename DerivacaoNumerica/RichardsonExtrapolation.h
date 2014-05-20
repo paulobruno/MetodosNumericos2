@@ -24,6 +24,7 @@ class RichardsonExtrapolation : public Differentiation
 {
     public:
     
+        RichardsonExtrapolation(std::string filename, int diffMethod);
         RichardsonExtrapolation(std::string filename, const std::vector<Function*>& functions, int diffMethod);
         ~RichardsonExtrapolation() {} // don't delete func because FirstDerivative already do this
         

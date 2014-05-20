@@ -65,9 +65,7 @@ double GaussianQuadrature::calculateIntegral()
     for (int i = 0 ; i < n ; ++i)
     {
     	x_t = ( (xMax - xMin) * t[n-1][i] + xMin + xMax ) / 2.0;
-    	std::cout << "xt = " << x_t << '\n';
-        integral += A[n-1][i] * func->f(x_t);       
-    	std::cout << "f(xt) = " << func->f(x_t) << "\n\n";
+        integral += A[n-1][i] * func->f(x_t);
     }
     return ((xMax - xMin)*integral / 2.0);
 }

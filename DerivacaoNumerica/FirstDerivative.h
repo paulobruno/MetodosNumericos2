@@ -32,9 +32,10 @@ class FirstDerivative : public Differentiation
     public:
     
         FirstDerivative(std::string filename);
+        FirstDerivative(std::string filename, int diffMethod);
         FirstDerivative(std::string filename, const std::vector<Function*>& functions, int diffMethod);
         
-        virtual ~FirstDerivative() {delete func;}
+        virtual ~FirstDerivative() {if(func != NULL) delete func;}
         
         friend class RichardsonExtrapolation;
         

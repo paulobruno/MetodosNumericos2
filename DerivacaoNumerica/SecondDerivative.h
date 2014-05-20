@@ -30,16 +30,19 @@ class SecondDerivative : public Differentiation
 {
     public:
     
+    	SecondDerivative(std::string filename, int diffMethod);
         SecondDerivative(std::string filename, const std::vector<Function*>& functions, int diffMethod);
-        ~SecondDerivative() {delete func;}
+        ~SecondDerivative() {if(func != NULL) delete func;}
         
         double calculateDerivative();
 
     private:
 
+		int n;
         double xi, step;
         Function *func;
         derivativeType diffType;
+		std::vector<double> x, fx;
 };
 
 #endif // __SECOND_DERIVATIVE_H__

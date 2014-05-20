@@ -48,6 +48,38 @@ FirstDerivative::FirstDerivative(std::string filename)
     func = NULL;
 }
 
+FirstDerivative::FirstDerivative(std::string filename, int diffMethod)
+{
+	diffType = (derivativeType)diffMethod;
+	
+	std::ifstream file;
+    file.open(filename.c_str(), std::ifstream::in);
+
+    file >> n;
+
+    if (n < 2 || n > 4)
+    {
+	    std::cout << "Numero de pontos incorreto. Digite 'make help' para ajuda.\nPrograma abortado.\n";
+	    exit(EXIT_FAILURE);
+    }
+    
+    double tempX, tempFx;
+    
+    for (unsigned int i = 0; i < n; ++i)
+    {
+		file >> tempX >> tempFx;
+
+		x.push_back(tempX);
+		fx.push_back(tempFx);
+    }
+    
+    step = x[1] - x[0];
+    
+    // default values
+    xi = 0;
+    func = NULL;
+}
+
 FirstDerivative::FirstDerivative(std::string filename, const std::vector<Function*>& functions, int diffMethod)
 {
 	diffType = (derivativeType)diffMethod;
@@ -98,11 +130,25 @@ double FirstDerivative::calculateDerivative()
         case BACKWARD:
             if (n == 2)
             {
-                return ((func->f(xi) - func->f(xi-step)) / step);
+            	if (func == NULL)
+                {
+                	return ((fx[1] - fx[0]) / step);
+               	}
+               	else
+               	{
+               		return ((func->f(xi) - func->f(xi-step)) / step);
+               	}
             }
             else if (n == 3)
             {
-                return ((3*func->f(xi) - 4*func->f(xi-step) + func->f(xi-2*step)) / (2*step));
+                if (func == NULL)
+                {
+                	return ((3*fx[2] - 4*fx[1] + fx[0]) / (2*step));
+               	}
+               	else
+               	{
+               		return ((3*func->f(xi) - 4*func->f(xi-step) + func->f(xi-2*step)) / (2*step));
+               	}
             }
             else
             {
@@ -114,11 +160,25 @@ double FirstDerivative::calculateDerivative()
         case FORWARD:
             if (n == 2)
             {
-                return ((func->f(xi+step) - func->f(xi)) / step);
+                if (func == NULL)
+                {
+               		return ((fx[1] - fx[0]) / step);
+               	}
+               	else
+               	{
+                	return ((func->f(xi+step) - func->f(xi)) / step);
+               	}
             }
             else if (n == 3)
             {
-                return ((-func->f(xi+2*step) + 4*func->f(xi+step) - 3*func->f(xi)) / (2*step));
+                if (func == NULL)
+                {
+               		return ((-fx[2] + 4*fx[1] - 3*fx[0]) / (2*step));
+               	}
+               	else
+               	{
+                	return ((-func->f(xi+2*step) + 4*func->f(xi+step) - 3*func->f(xi)) / (2*step));
+               	}
             }
             else
             {
@@ -130,11 +190,25 @@ double FirstDerivative::calculateDerivative()
         case CENTRAL:
             if (n == 2)
             {
-                return ((func->f(xi+step) - func->f(xi-step)) / (2*step));
+                if (func == NULL)
+                {
+               		return ((fx[1] - fx[0]) / step); // in this case step = 2*h
+               	}
+               	else
+               	{
+                	return ((func->f(xi+step) - func->f(xi-step)) / step); // in this case step = 2*h
+               	}
             }
             else if (n == 4)
             {
-                return ((-func->f(xi+2*step) + 8*func->f(xi+step) - 8*func->f(xi-step) + func->f(xi-2*step)) / (12*step));
+                if (func == NULL)
+                {
+               		return ((-fx[3] + 8*fx[2] - 8*fx[1] + fx[0]) / (12*step));
+               	}
+               	else
+               	{
+                	return ((-func->f(xi+2*step) + 8*func->f(xi+step) - 8*func->f(xi-step) + func->f(xi-2*step)) / (12*step));
+               	}
             }
             else
             {

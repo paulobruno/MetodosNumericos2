@@ -7,12 +7,20 @@
 /*  METODOS NUMERICOS II                     */
 /*  PROFESSORA: Emanuele Marques dos Santos  */
 /*                                           */
+/*  Jose Orlando Barbosa Filho      336224   */
 /*  Paulo Bruno de Sousa Serafim    354086   */
 /*                                           */
 /*********************************************/
 
-#include "InverseIteration.h"
+#include "GaussianQuadrature.h"
+#include "ClosedNewtonCotes.h"
 #include <iostream>
+#include <vector>
+#include <time.h>
+
+#include "Function.h"
+#include "Function1.h"
+#include "Function2.h"
 
 #include <sys/time.h>
 
@@ -30,32 +38,34 @@ int main(int narg, char* argc[])
     std::cout.setf( std::ios::fixed, std:: ios::floatfield );
     std::cout.precision(8);
     
+    double infIntegral, supIntegral, midIntegral;
+    
     timestamp_t inicio, fim;
 	inicio = get_timestamp();
 	
-		InverseIteration invItEvalue(argc[1]);
-		invItEvalue.calculateEigenvalue();
-    
-    fim = get_timestamp();	
-
-	std::vector<double> evector;
-	int order;
-	double evalue;
+		std::vector<Function*> functions;
 	
-	order = invItEvalue.getOrder();
-	evalue = invItEvalue.getEigenvalue();
-	evector = invItEvalue.getEigenvector();
+		functions.push_back( new Function1() );
+		functions.push_back( new Function2() );
 
-    // print results
-    std::cout << "\nResults: \n" << "\033[0;31mUnit Eigenvector:\033[0m\n";
+		GaussianQuadrature quadrature(argc[1], functions);
+		midIntegral = quadrature.calculateIntegral();
 
-    for (unsigned int i = 0; i < order; ++i)
-    {            
-        std::cout << evector[i] << '\n';
-    }
-    
-    std::cout << "\033[0;33mEigenvalue: \033[0m" << evalue << "\n\n";
-    
+		std::cout << "Quad: " << midIntegral << '\n';
+
+		ClosedNewtonCotes infTrapezio(argc[2], 1);
+		infIntegral = infTrapezio.calculateIntegral();
+	
+		std::cout << "Inf: " << infIntegral << '\n';
+	
+		ClosedNewtonCotes supTrapezio(argc[3], 1);
+		supIntegral = supTrapezio.calculateIntegral();
+
+		std::cout << "Sup: " << supIntegral << '\n';
+	
+		std::cout << "Integral: " << infIntegral + midIntegral + supIntegral << "\n";
+
+    fim = get_timestamp();	
 	
 	std::cout << "tempo: " << (fim - inicio)/1000.0L << " milissegundos.\n";
 

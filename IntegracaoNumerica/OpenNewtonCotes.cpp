@@ -24,7 +24,7 @@ OpenNewtonCotes::OpenNewtonCotes(std::string filename, const std::vector<Functio
 
 	fileTable >> n;
 
-	if (n < 0 || n > 4)
+	if (n < 2 || n > 5)
 	{
 		std::cout << "Metodo inexistente. Escolha um valor no intervalo [0,4]. Digite 'make help' para ajuda.\nPrograma abortado.\n";
 		exit(EXIT_FAILURE);
@@ -53,21 +53,14 @@ double OpenNewtonCotes::calculateIntegral()
 							  11,   1,   1,   11,   0,
 							  11, -14,  26,  -14,  11 };
 							  
-	double step = ( (xMax - xMin) / (double)(n+2) );
+	double step = ( (xMax - xMin) / (double)(n+1) );
 
-	if (n > 0)	
+	double sum = 0;
+
+	for (int i = 1; i <= n; ++i)
 	{
-		double sum = 0;
-
-		for (int i = 1; i <= n+1; ++i)
-		{
-			sum += func->f(xMin + i*step) * weight[n-1][i-1];
-		}
-
-		return (alpha[n-1] * step * sum);
+		sum += func->f(xMin + i*step) * weight[n-2][i-1];
 	}
-	else
-	{
-		return ( 2 * step * func->f( (xMin + xMax)/2 ) );
-	}
+
+	return (alpha[n-2] * step * sum);
 }

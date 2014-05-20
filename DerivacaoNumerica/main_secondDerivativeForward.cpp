@@ -16,23 +16,33 @@
 #include <vector>
 
 #include "Function.h"
-#include "Function1.h"
-#include "Function2.h"
-#include "Function3.h"
-#include "Function4.h"
+
+#include <sys/time.h>
+
+typedef unsigned long long timestamp_t;
+
+static timestamp_t get_timestamp ()
+{
+  struct timeval now;
+  gettimeofday (&now, NULL);
+  return  now.tv_usec + (timestamp_t)now.tv_sec * 1000000;
+}
 
 int main(int narg, char* argc[])
 {
-	std::vector<Function*> functions;
+    std::cout.setf( std::ios::fixed, std:: ios::floatfield );
+    std::cout.precision(8);
+    
+    timestamp_t inicio, fim;
+	inicio = get_timestamp();
 	
-	functions.push_back( new Function1() );
-	functions.push_back( new Function2() );
-	functions.push_back( new Function3() );
-	functions.push_back( new Function4() );
+		SecondDerivative secondDiff(argc[1], 0);
 
-	SecondDerivative secondDiff(argc[1], functions, 0);
+		std::cout << "Forward Second Derivative: " << secondDiff.calculateDerivative() << "\n";
 
-	std::cout << "Forward Second Derivative: " << secondDiff.calculateDerivative() << "\n";
+    fim = get_timestamp();	
+	
+	std::cout << "tempo: " << (fim - inicio)/1000.0L << " milissegundos.\n";
 
 	return 0;
 }

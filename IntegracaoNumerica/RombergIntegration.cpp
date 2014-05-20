@@ -3,14 +3,16 @@
 #include <fstream>
 #include <cstdlib>
 
-RombergIntegration::RombergIntegration(std::string filename, std::vector<Function*>& functions)
+RombergIntegration::RombergIntegration(std::string filename, std::vector<Function*>& functions, int integrationMethod)
 {
+	typeMethod = integrationMethod - 1;
+
 	std::ifstream fileTable;
     fileTable.open(filename.c_str(), std::ifstream::in);
 
-	fileTable >> m1;
+	fileTable >> h1;
 
-	m2 = m1 / 2;
+	h2 = h1 / 2;
 
 	int funcIndex;
 	fileTable >> funcIndex;
@@ -24,47 +26,36 @@ RombergIntegration::RombergIntegration(std::string filename, std::vector<Functio
 	func = functions[funcIndex-1];
 	
 	fileTable >> xMin >> xMax;
-
-	writeClosedNCfiles();
 }
 
 double RombergIntegration::calculateIntegral()
 {
-	closedNC = new ClosedNewtonCotes("closedNCforRomberg1.txt", 1);
+	ClosedNewtonCotes cn1, cn2;
+	
+	int m1 = (xMax - xMin) / h1;
+	int m2 = (xMax - xMin) / h2;
 
-	integral1 = closedNC->calculateIntegral();
+	cn1.m = m1;
+	cn2.m = m2;
+	
+	cn1.typeMethod = typeMethod;
+	cn2.typeMethod = typeMethod;
 
-	delete closedNC;
-
-
-	closedNC = new ClosedNewtonCotes("closedNCforRomberg2.txt", 1);
-
-	integral2 = closedNC->calculateIntegral();
-
-	delete closedNC;
-
-
-	return ((4/3)*integral2 - (1/3)*integral1);
-}
-
-void RombergIntegration::writeClosedNCfiles()
-{
-	std::ofstream fileTable1, fileTable2;
-    fileTable1.open("closedNCforRomberg1.txt", std::ofstream::out);
-    fileTable2.open("closedNCforRomberg2.txt", std::ofstream::out);
-
-	double h1 = (xMax - xMin) / (double)m1;
-	double h2 = (xMax - xMin) / (double)m2;
-
-	fileTable1 << m1;
-	fileTable2 << m2;
-
-	for (int i = 0; i < m1; ++i)
+	for (int i = 0; i <= m1; ++i)
 	{
 		double x1 = xMin + i*h1;
-		fileTable1 << "\n" << x1 << "\t" << func->f(x1);
-
-		double x2 = xMin + i*h2;
-		fileTable2 << "\n" << x2 << "\t" << func->f(x2);
+		
+		cn1.x.push_back(x1);
+		cn1.fx.push_back(func->f(x1));
 	}
+	
+	for (int i = 0; i <= m2; ++i)
+	{	
+		double x2 = xMin + i*h2;
+		
+		cn2.x.push_back(x2);
+		cn2.fx.push_back(func->f(x2));
+	}
+	
+	return ((4/3)*cn2.calculateIntegral() - (1/3)*cn1.calculateIntegral());
 }

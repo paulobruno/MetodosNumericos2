@@ -16,6 +16,38 @@
 #include <fstream>
 #include <cstdlib>
 
+SecondDerivative::SecondDerivative(std::string filename, int diffMethod)
+{
+	diffType = (derivativeType)diffMethod;
+	
+	std::ifstream file;
+    file.open(filename.c_str(), std::ifstream::in);
+
+    file >> n;
+
+    if (n != 3)
+    {
+	    std::cout << "Numero de pontos incorreto. Devem ser usados 3 pontos. Digite 'make help' para ajuda.\nPrograma abortado.\n";
+	    exit(EXIT_FAILURE);
+    }
+    
+    double tempX, tempFx;
+    
+    for (unsigned int i = 0; i < n; ++i)
+    {
+		file >> tempX >> tempFx;
+
+		x.push_back(tempX);
+		fx.push_back(tempFx);
+    }
+    
+    step = x[1] - x[0];
+    
+    // default values
+    xi = 0;
+    func = NULL;
+}
+
 SecondDerivative::SecondDerivative(std::string filename, const std::vector<Function*>& functions, int diffMethod)
 {
 	diffType = (derivativeType)diffMethod;
@@ -52,19 +84,40 @@ SecondDerivative::SecondDerivative(std::string filename, const std::vector<Funct
 }
 
 double SecondDerivative::calculateDerivative()
-{
+{	
     switch (diffType)
     {
         case BACKWARD:
-            return ((func->f(xi) - 2*func->f(xi-step) + func->f(xi-2*step)) / (step*step));
+	        if (func == NULL)
+            {
+    	        return ((fx[2] - 2*fx[1] + fx[0]) / (step*step));
+            }
+            else
+            {
+            	return ((func->f(xi) - 2*func->f(xi-step) + func->f(xi-2*step)) / (step*step));
+            }
             break;
     
         case FORWARD:
-            return ((func->f(xi+2*step) - 2*func->f(xi+step) + func->f(xi)) / (step*step));
+	        if (func == NULL)
+            {
+    	        return ((fx[2] - 2*fx[1] + fx[0]) / (step*step));
+            }
+            else
+            {
+            	return ((func->f(xi+2*step) - 2*func->f(xi+step) + func->f(xi)) / (step*step));
+        	}
             break;
             
         case CENTRAL:
-            return ((func->f(xi+step) - 2*func->f(xi) + func->f(xi-step)) / (step*step));
+	        if (func == NULL)
+            {
+    	        return ((fx[2] - 2*fx[1] + fx[0]) / (step*step));
+            }
+            else
+            {
+            	return ((func->f(xi+step) - 2*func->f(xi) + func->f(xi-step)) / (step*step));
+            }
             break;
             
         default:
