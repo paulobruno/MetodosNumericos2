@@ -5,33 +5,142 @@ CURSO DE COMPUTACAO
 METODOS NUMERICOS II
 PROFESSORA: Emanuele Marques dos Santos
 
-Jose Orlando Barbosa Filho      336224
 Paulo Bruno de Sousa Serafim    354086
 
+
 # Sumario
+
     ITEM01 Compilando
-    ITEM02 Metodos de Newton-Cotes fechado
-    ITEM03 Metodos de Newton-Cotes aberto
-    ITEM04 Quadratura Gaussiana
-    ITEM05 Metodo de Romberg
-    ITEM06 Integrais duplas
-    ITEM07 Consideracoes finais
+        ITEM0101 Compilando todos
+        ITEM0102 Compilação individual
+    ITEM02 Executando
+        ITEM0201 Execução geral
+        ITEM0202 Execução específica 
+    
+    APENDICE01 Arquivos "main" gerais
+        # APENDICE0101 Integração Numérica
+        # APENDICE0102 Derivação Numérica
+        # APENDICE0103 Problemas de Valor Inicial
+    
+    FINAL01 Consideracoes finais
     
     
 # ITEM01 Compilando
 
+    # ITEM0101 Compilando Todos
+    
+        - Para compilar todos os métodos ao mesmo tempo, basta entrar na pasta 
+        em que se encontra o Makefile e utilizar o comando make:
+            $ make
+            
+    # ITEM0102 Compilação individual
+    
+        - Para compilar somente um método, utilize o comando make correspondente.
+        Para saber qual comando utilizar, entre na pasta que contém o Makefile e
+        execute um comando help:
+            $ make help
+
+
 # ITEM02 Metodos de Newton-Cotes fechado
 
-# ITEM03 Metodos de Newton-Cotes aberto
-
-# ITEM04 Quadratura Gaussiana
-
-# ITEM05 Metodo de Romberg
-
-# ITEM06 Integrais duplas
-
-# ITEM07 Consideracoes finais
-
-    Quaisquer dúvidas, sugestões de problemas, favor entrar em contato com os desenvolvedores.
+    # ITEM0201 Execução geral
     
-    Fortaleza, 21 de marco de 2014.
+        - Para executar um método que possui variações execute o main geral desse
+        método, em que o último argumento de linha deve ser o identificador de um
+        método específico.
+        
+        - Por exemplo: existem somente três main's  específicos para métodos de 
+        Newton-Cotes fechados, a saber: trapezio (1ª ordem), 1/3 de Simpson (2ª 
+        ordem) e 1/8 de Simpson (3ª ordem), entretanto é possível executar um 
+        método de Newton-Cotes fechado de até 6ª ordem. Para isso será necessário
+        utilizar o main geral "main_closedNewtonCotes.cpp", com executável 
+        "execClosedNC" (verificado no make help). A execução deverá ser:
+            $ ./execClosedNC arquivoentrada.txt ordem
+        Exemplo:
+            $ ./execClosedNC entrada1.txt 6
+    
+        - Um main geral pode ser usado para executar exemplos específicos sem
+        problemas. Os main's específicos nada mais são do que uma utilização
+        prévia de um main geral.
+    
+        - Para informações específicas de cada método, consulte o APENDICE01.
+    
+    # ITEM0202 Execução específica
+    
+        - Para executar um método específico, basta executar o seu main próprio
+        utilizando os argumentos convenientes (verifique no make help).
+        
+        - Por exemplo: para executar o método do Trapézio sem utilizar o main
+        geral seu executável será "execTrapezium". A execução deverá ser:
+            $ ./execTrapezium arquivoentrada.txt
+
+    
+# APENDICE01 Arquivos "main" gerais
+
+    # APENDICE0101 Integração Numérica
+    
+        - main_closedNewtonCotes.cpp
+            
+            * Utilizado na resolução de integrais simples utilizando os métodos
+            fechados de Newton-Cotes.
+            
+            * Aceita ordem de 1 a 6, na qual 1 é o Método do Trapézio, 2 é o 
+            Método 1/3 de Simpson e 3 é o Método 3/8 de Simpson.
+        
+        - main_doubleIntegration.cpp
+        
+            * Utilizado na resolução de integrais duplas utilizando os métodos 
+            fechados de Newton-Cotes.
+        
+            * Aceita ordem de 1 a 6, na qual 1 é o Método do Trapézio, 2 é o 
+            Método 1/3 de Simpson e 3 é o Método 3/8 de Simpson.
+        
+        - main_romberg.cpp
+    
+            * Utilizado na resolução de integrais duplas utilizando o método de
+            Romberg, que por sua vez utiliza os métodos fechados de Newton-Cotes.
+        
+            * Aceita ordem de 1 a 6, na qual 1 é o Método do Trapézio, 2 é o 
+            Método 1/3 de Simpson e 3 é o Método 3/8 de Simpson.
+        
+    # APENDICE0102 Derivação Numérica
+    
+        - main_firstDerivative.cpp
+        
+            * Utilizado na resolução de primeiras derivações utilizando métodos
+            de diferenças finitas ou método de Lagrange.
+        
+            * Aceita valores de 0 a 2, em que 0 é Backward Difference, 1 é
+            Forward Difference e 2 é Central Difference. 
+            
+            * Para utilizar o método de Lagrange é necessário utilizar o main 
+            específico "main_lagrangeDerivative.cpp".
+    
+        - main_richardsonExtrapolation.cpp
+        
+            * Utilizado na resolução de primeiras derivações utilizando o método
+            de Extrapolação de Richardson, que por sua vez utiliza os métodos
+            de diferenças finitas.
+        
+            * Aceita valores de 0 a 2, em que 0 é Backward Difference, 1 é
+            Forward Difference e 2 é Central Difference. 
+            
+        - main_secondDerivative.cpp
+        
+            * Utilizado na resolução de segundas derivações utilizando métodos
+            de diferenças finitas.
+        
+            * Aceita valores de 0 a 2, em que 0 é Backward Difference, 1 é
+            Forward Difference e 2 é Central Difference. 
+        
+    # APENDICE0103 Problemas de Valor Inicial
+    
+        - TODO
+        
+        
+# FINAL01 Consideracoes finais
+
+    Quaisquer dúvidas, sugestões de problemas, favor entrar em contato com o desenvolvedor.
+    
+    
+Fortaleza, Maio 2014.
