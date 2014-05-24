@@ -26,7 +26,7 @@ OpenNewtonCotes::OpenNewtonCotes(std::string filename, const std::vector<Functio
 
 	if (n < 2 || n > 5)
 	{
-		std::cout << "Metodo inexistente. Escolha um valor no intervalo [0,4]. Digite 'make help' para ajuda.\nPrograma abortado.\n";
+		std::cout << "Metodo inexistente. Escolha um valor no intervalo [2,5]. Digite 'make help' para ajuda.\nPrograma abortado.\n";
 		exit(EXIT_FAILURE);
 	}
 
