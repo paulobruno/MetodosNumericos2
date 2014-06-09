@@ -59,7 +59,8 @@ void RungeKutta::solveProblem()
     // set the number of decimals of std::cout
     std::cout.setf( std::ios::fixed, std:: ios::floatfield );
     
-	int m = (xMax - xMin) / step;
+	double a = (xMax - xMin) / step;
+	int m = (int) a;
 	
 	y.push_back(y0);
 

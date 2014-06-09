@@ -114,9 +114,9 @@ help:
 	@echo "#                            Gera executavel execForwardEuler."
 	@echo "#     make rungeKutta2nd : Compila os arquivos do metodo de Runge-Kutta segunda ordem."
 	@echo "#                            Gera executavel execRungeKutta2nd."
-	@echo "#     make rungeKutta3rd : Compila os arquivos do metodo de Runge-Kutta terceira ordem
+	@echo "#     make rungeKutta3rd : Compila os arquivos do metodo de Runge-Kutta terceira ordem."
 	@echo "#                            Gera executavel execRungeKutta3rd."
-	@echo "#     make rungeKutta4th : Compila os arquivos do metodo de Runge-Kutta quarta ordem
+	@echo "#     make rungeKutta4th : Compila os arquivos do metodo de Runge-Kutta quarta ordem."
 	@echo "#                            Gera executavel execRungeKutta4th."
 	@echo "#     make adamsPc       : Compila os arquivos do metodo Preditor-corretor de Adams qualquer ordem."
 	@echo "#                            Gera executavel execAdamsPc3rd."

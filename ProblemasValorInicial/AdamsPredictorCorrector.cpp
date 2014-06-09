@@ -49,7 +49,8 @@ void AdamsPredictorCorrector::solveProblem()
     
 	RungeKutta rk4;
 
-	int m = (xMax - xMin) / step;
+	double a = (xMax - xMin) / step;
+	int m = (int) a;
 
 	switch (pcOrder)
 	{
