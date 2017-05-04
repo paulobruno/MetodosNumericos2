@@ -2,18 +2,18 @@ Here are the codes I made in the Numerical Methods 2 course in my Computer Scien
 - If you see any writing errors or typos, please warn me;
 - Any doubts, sugestions and/or issues, please contact me.
 ### Sumary
-1. [Compiling](#compiling)
-1.1 [Compiling Everything](#compiling-everything)
-1.2 [Inidividual Compilation](#individual-compilation)
-2. [Executing](#executing)
-2.1 [General Execution](#general-execution)
-2.2 [Specific Execution](#specific-execution)
-3. [Appendix: General "main" files](#appendix)
-3.1. [Numerical Integration](#numerical-integration)
-3.2. [Numerical Derivative](#numarical-derivative)
-3.3. [Initial Value Problems](#initial-value-problems)
-3.4. [Boundary Value Problems](#boundary-value-problems)
-3.5. [Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
+[1. Compiling](#1.-compiling)
+[1.1 Compiling Everything](#1.1-compiling-everything)
+[1.2 Inidividual Compilation](#1.2-individual-compilation)
+[2. Executing](#2.-executing)
+[2.1 General Execution](#2.1-general-execution)
+[2.2 Specific Execution](#2.2-specific-execution)
+[3. General *main* files](#3.-general-*main*-files)
+[3.1 Numerical Integration](#3.1-numerical-integration)
+[3.2 Numerical Derivative](#3.2-numerical-derivative)
+[3.3 Initial Value Problems](#3.3-initial-value-problems)
+[3.4 Boundary Value Problems](#3.4-boundary-value-problems)
+[3.5 Eigenvalues and Eigenvectors](#3.5-eigenvalues-and-eigenvectors)
 ### 1. Compiling
 ##### 1.1 Compiling Everything
 - To compile all methods at the same time it is enough to go into the folder where *Makefile* is and use the *make* command:
