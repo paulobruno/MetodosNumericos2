@@ -11,8 +11,7 @@
 /*                                           */
 /*********************************************/
 
-	Como cada caso é específico, o usuário fica responsável por calcular o sistema e então passa este, 
-em formato de matrix, pelo arquivo de entrada. Um arquivo de entrada geral é:
+    As each case is specific, the user is responsible to calculate the sistem and pass it, in matrix form, to input file. A general input file is like:
 
 step
 yMin	yMax
@@ -26,8 +25,6 @@ f(x2,y2)
 ...
 f(xn,yn)
 
-	Um exemplo específico encontra-se no arquivo "exemplo1.txt".
+    A specific example can be found in the file "exemplo1.txt".
 	
-	Como a solução para matrizes unidimensionais gera uma matriz tridiagonal, recomenda-se utilizar a
-específica para ser mais eficiente. Para tanto, utilize "main_tridiagonalMatrix.cpp". Já para a solução 
-de matrizes bidimensionais podem ser utilidas as resoluções por eliminação de Gauss ou Gauss-Seidel.
+    As the solution for unidimensional matrices generates a tridiagonal matrix, it is recommended to use the specific main file "main_tridiagonalMatrix.cpp" to be more efficient. To solve two-dimensional matrices, it could be used the solutions by Gauss-Seidel Method (not implemented) or Gaussian Elimination.

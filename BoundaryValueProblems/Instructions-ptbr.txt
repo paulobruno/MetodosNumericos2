@@ -1,0 +1,30 @@
+/*********************************************/
+/*                                           */
+/*  2014, Fortaleza, Ceara                   */
+/*                                           */
+/*  UNIVERSIDADE FEDERAL DO CEARA            */
+/*  CURSO DE COMPUTACAO                      */
+/*  METODOS NUMERICOS II                     */
+/*  PROFESSORA: Emanuele Marques dos Santos  */
+/*                                           */
+/*  Paulo Bruno de Sousa Serafim    354086   */
+/*                                           */
+/*********************************************/
+
+	Como cada caso é específico, o usuário fica responsável por calcular o sistema e então o passa, em formato de matrix, pelo arquivo de entrada. Um arquivo de entrada geral é:
+
+step
+yMin	yMax
+n
+a11	a12	a13	...	a1n
+a21	a22	a23	...	a2n
+...	...	...	...	...
+an1	an2	an3	...	ann
+f(x1,y1)
+f(x2,y2)
+...
+f(xn,yn)
+
+	Um exemplo específico encontra-se no arquivo "exemplo1.txt".
+	
+	Como a solução para matrizes unidimensionais gera uma matriz tridiagonal, recomenda-se utilizar a específica para ser mais eficiente. Para tanto, utilize "main_tridiagonalMatrix.cpp". Já para a solução de matrizes bidimensionais podem ser utilidas as resoluções por eliminação de Gauss ou Gauss-Seidel (este último ainda não implementado).

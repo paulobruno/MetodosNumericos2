@@ -3,17 +3,17 @@ Here are the codes I made in the Numerical Methods 2 course in my Computer Scien
 - Any doubts, sugestions and/or issues, please contact me.
 ### Sumary
 - [Compiling](#compiling)
-* [Compiling Everything](#compiling-everything)
-* [Individual Compilation](#individual-compilation)
+  * [Compiling Everything](#compiling-everything)
+  * [Individual Compilation](#individual-compilation)
 - [Executing](#executing)
-* [General Execution](#general-execution)
-* [Specific Execution](#specific-execution)
+  * [General Execution](#general-execution)
+  * [Specific Execution](#specific-execution)
 - [General *main* files](#general-main-files)
-* [Numerical Integration](#numerical-integration)
-* [Numerical Derivative](#numerical-derivative)
-* [Initial Value Problems](#initial-value-problems)
-* [Boundary Value Problems](#boundary-value-problems)
-* [Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
+  * [Numerical Integration](#numerical-integration)
+  * [Numerical Derivative](#numerical-derivative)
+  * [Initial Value Problems](#initial-value-problems)
+  * [Boundary Value Problems](#boundary-value-problems)
+  * [Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
 
 ### Compiling
 ##### Compiling Everything
@@ -52,6 +52,8 @@ $ ./execTrapezium inputfile.txt
 - `main_closedNewtonCotes.cpp`
   * Used to solve single integrals using Closed Newton-Cotes methods;
   * It accepts order from 1 to 6, where 1 is the trapezoidal rule, 2 is the Simpson's 1/3 rule and 3 is the Simpson's 3/8 rule.
+- `main_quadrature.cpp`
+  * Used to solve integrals using Gaussian Quadrature methods.
 - `main_doubleIntegration.cpp`
   * Used to solve double integrals using Closed Newton-Cotes methods;
   * It accepts order from 1 to 6, where 1 is the trapezoidal rule, 2 is the Simpson's 1/3 rule and 3 is the Simpson's 3/8 rule.
@@ -70,8 +72,27 @@ $ ./execTrapezium inputfile.txt
   * Used to solve second derivatives using finite difference methods;
   * It accepts values from 0 to 2, where 0 is Backward Difference, 1 is Forward Difference and 2 is Central Difference.
 ##### Initial Value Problems
-- TODO
+- `mainAdamsPredictorCorrector.cpp`
+  * It accepts order values of 0 or 1, where 0 is Adams Predictor-Corrector 3rd order and 1 is Adams Predictor-Corrector 4th order.
+- `mainRungeKutta.cpp`
+  * It accepts order values from 0 to 3, where 0 is Forward Euler method (Runge-Kutta 1st order), 1 is Runge-Kutta 2nd order, 2 is Runge-Kutta 3rd order and 3 is Runge-Kutta 4th order.
 ##### Boundary Value Problems
-- TODO
+```
+Please, see also the "Intructions" file inside the folder "BoundaryValueProblems"
+```
+- `main_tridiagonalMatrx.cpp`
+  * Used to solve a linear system, represented by a tridiagonal matrix.
+- `main_gaussianElimination.cpp`
+  * Used to solve a linear system, represented by a two-dimensional matrix, using Gaussian ELimination.
+- `main_gaussSeidel.cpp`
+  * Used to solve a linear system, represented by a two-dimensional matrix, using Gauss-Seidel method.
 ##### Eigenvalues and Eigenvectors
-- TODO
+```
+Incomplete*
+```
+- `main_powerIteration.cpp`
+- `main_inverseIteration.cpp`
+- `main_powerIteration.cpp`
+- `main_jacobi.cpp`
+- `main_qrAlgorithm.cpp`
+- `main_householderTransformation.cpp`
