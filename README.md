@@ -3,17 +3,17 @@ Here are the codes I made in the Numerical Methods 2 course in my Computer Scien
 - Any doubts, sugestions and/or issues, please contact me.
 ### Sumary
 - [Compiling](#compiling)
-- [Compiling Everything](#compiling-everything)
-- [Inidividual Compilation](#individual-compilation)
+* [Compiling Everything](#compiling-everything)
+* [Individual Compilation](#individual-compilation)
 - [Executing](#executing)
-- [General Execution](#general-execution)
-- [Specific Execution](#specific-execution)
-- [General *main* files](#general-*main*-files)
-- [Numerical Integration](#numerical-integration)
-- [Numerical Derivative](#numerical-derivative)
-- [Initial Value Problems](#initial-value-problems)
-- [Boundary Value Problems](#boundary-value-problems)
-- [Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
+* [General Execution](#general-execution)
+* [Specific Execution](#specific-execution)
+- [General *main* files](#general-main-files)
+* [Numerical Integration](#numerical-integration)
+* [Numerical Derivative](#numerical-derivative)
+* [Initial Value Problems](#initial-value-problems)
+* [Boundary Value Problems](#boundary-value-problems)
+* [Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
 
 ### Compiling
 ##### Compiling Everything
@@ -21,7 +21,7 @@ Here are the codes I made in the Numerical Methods 2 course in my Computer Scien
 ```
 $ make
 ```
-##### Inidividual Compilation
+##### Individual Compilation
 - To compile only one method, use the corresponding *make* command.
 - For this, you should go into the folder where the *Makefile* is and execute the *help* command:
 ```
